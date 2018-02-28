@@ -3,6 +3,7 @@ package bongmi.googlearchitecture.room;
 import android.arch.persistence.room.PrimaryKey;
 
 /**
+ * Id 和 id 大小写敏感
  * Copyright (c) 2018, Bongmi
  * All rights reserved
  * Author: wangjunjie@bongmi.com
@@ -10,13 +11,13 @@ import android.arch.persistence.room.PrimaryKey;
 
 public class Model {
   @PrimaryKey(autoGenerate = true)
-  private int mid;
+  private int Id;
 
-  public int getMid() {
-    return mid;
+  public int getId() {
+    return Id;
   }
 
-  public void setMid(int mid) {
-    this.mid = mid;
+  public void setId(int id) {
+    Id = id;
   }
 }
