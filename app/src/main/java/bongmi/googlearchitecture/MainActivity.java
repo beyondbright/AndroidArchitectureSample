@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
         User user = new User();
         user.setFirstName("first name");
         user.setLastName("last name");
-        AppDatabase.getDatabase(getApplicationContext()).getUserDao().insertAll(user);
+        AppDatabase.getDatabase(getApplicationContext()).getUserDao().deleteAll();
+        //AppDatabase.getDatabase(getApplicationContext()).getUserDao().insertAll(user);
         e.onNext("onNext");
       }
     }).subscribeOn(Schedulers.io())
