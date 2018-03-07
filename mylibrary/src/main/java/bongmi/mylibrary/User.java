@@ -1,4 +1,4 @@
-package bongmi.googlearchitecture.room;
+package bongmi.mylibrary;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

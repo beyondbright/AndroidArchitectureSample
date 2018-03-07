@@ -8,6 +8,8 @@ import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import bongmi.mylibrary.User;
+import bongmi.mylibrary.UserDao;
 
 /**
  * Copyright (c) 2018, Bongmi
