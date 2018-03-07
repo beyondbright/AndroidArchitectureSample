@@ -6,6 +6,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 /**
  * Copyright (c) 2018, Bongmi
@@ -15,6 +16,9 @@ import android.arch.persistence.room.Query;
 
 @Dao
 public interface UserDao {
+  @Query("SELECT * FROM user limit 1")
+  User get();
+
   @Query("SELECT * FROM user")
   List<User> getAll();
 
@@ -33,4 +37,10 @@ public interface UserDao {
 
   @Query("delete from user")
   void deleteAll();
+
+  @Update
+  void update(User user);
+
+  @Query("select count(*) from user")
+  int count();
 }

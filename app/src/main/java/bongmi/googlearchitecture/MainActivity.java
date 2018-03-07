@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import bongmi.googlearchitecture.room.AppDatabase;
 import bongmi.googlearchitecture.room.User;
+import bongmi.googlearchitecture.room.UserDao;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -15,6 +16,26 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
   private static final String TAG = "MainActivity";
+  private UserDao userDao;
+
+  private void addUser() {
+    User user = new User();
+    user.setFirstName("first name");
+    user.setLastName("last name");
+    user.setCount(11);
+    userDao.insertAll(user);
+  }
+
+  private void deleteAllUser() {
+    userDao.deleteAll();
+  }
+
+  private void updateUser() {
+    User user = userDao.get();
+    user.setCount(0);
+    user.setFirstName("update last");
+    userDao.update(user);
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +46,9 @@ public class MainActivity extends AppCompatActivity {
       @Override
       public void subscribe(ObservableEmitter<Object> e) throws Exception {
         Log.d(TAG, "subscribe : " + Thread.currentThread().getName());
-        User user = new User();
-        user.setFirstName("first name");
-        user.setLastName("last name");
-        AppDatabase.getDatabase(getApplicationContext()).getUserDao().deleteAll();
-        //AppDatabase.getDatabase(getApplicationContext()).getUserDao().insertAll(user);
+        userDao = AppDatabase.getDatabase(getApplicationContext()).getUserDao();
+        updateUser();
+        Log.d(TAG, "subscribe : count : " + userDao.count());
         e.onNext("onNext");
       }
     }).subscribeOn(Schedulers.io())

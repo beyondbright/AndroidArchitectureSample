@@ -18,6 +18,9 @@ public class User extends Model {
   @ColumnInfo(name = "last_name")
   private String lastName;
 
+  @ColumnInfo(name = "count")
+  private int count;
+
   public String getFirstName() {
     return firstName;
   }
@@ -32,5 +35,13 @@ public class User extends Model {
 
   public void setLastName(String lastName) {
     this.lastName = lastName;
+  }
+
+  public int getCount() {
+    return count;
+  }
+
+  public void setCount(int count) {
+    this.count = count;
   }
 }

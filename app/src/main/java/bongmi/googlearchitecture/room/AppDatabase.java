@@ -15,7 +15,7 @@ import android.util.Log;
  * Author: wangjunjie@bongmi.com
  */
 
-@Database(entities = {User.class}, version = 3)
+@Database(entities = {User.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
   private static final String TAG = "AppDatabase";
   private static AppDatabase sInstance;
@@ -35,11 +35,6 @@ public abstract class AppDatabase extends RoomDatabase {
               Log.d(TAG, "onOpen");
             }
           }).addMigrations(new Migration(1, 2) {
-            @Override
-            public void migrate(@NonNull SupportSQLiteDatabase database) {
-
-            }
-          }, new Migration(2, 3) {
             @Override
             public void migrate(@NonNull SupportSQLiteDatabase database) {
 
