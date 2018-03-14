@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
   compileSdkVersion 26
@@ -35,8 +37,7 @@ dependencies {
 
   api project(':mylibrary')
 
-  // Room (use 1.1.0-alpha2 for latest alpha)
-  annotationProcessor "android.arch.persistence.room:compiler:1.1.0-alpha3"
+  kapt "android.arch.persistence.room:compiler:1.1.0-alpha3"
 
   // Test helpers for Room
   testImplementation "android.arch.persistence.room:testing:1.0.0"

@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     user.setFirstName("first name");
     user.setLastName("last name");
     user.setCount(11);
-    userDao.insertAll(user);
+    userDao.insertAll(new User[]{user});
   }
 
   private void deleteAllUser() {
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
       public void subscribe(ObservableEmitter<Object> e) throws Exception {
         Log.d(TAG, "subscribe : " + Thread.currentThread().getName());
         userDao = AppDatabase.getDatabase(getApplicationContext()).getUserDao();
-        updateUser();
+        addUser();
         Log.d(TAG, "subscribe : count : " + userDao.count());
         e.onNext("onNext");
       }
