@@ -37,6 +37,15 @@ public class MainActivity extends AppCompatActivity {
     userDao.update(user);
   }
 
+  private void query() {
+    User user = userDao.findByName("first name", "last name");
+    Log.d(TAG, user.toString());
+    user = userDao.testFindByName("first_name LIKE 'first name'");
+    if (user != null) {
+      Log.d(TAG, user.toString());
+    }
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -48,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "subscribe : " + Thread.currentThread().getName());
         userDao = AppDatabase.getDatabase(getApplicationContext()).getUserDao();
         addUser();
+        query();
         Log.d(TAG, "subscribe : count : " + userDao.count());
         e.onNext("onNext");
       }
@@ -67,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
           @Override
           public void onError(Throwable e) {
-
+            Log.d(TAG, e + " : " + Thread.currentThread().getName());
           }
 
           @Override

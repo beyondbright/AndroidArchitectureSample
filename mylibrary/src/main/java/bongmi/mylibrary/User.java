@@ -44,4 +44,13 @@ public class User extends Model {
   public void setCount(int count) {
     this.count = count;
   }
+
+  @Override
+  public String toString() {
+    return "User{" +
+        "firstName='" + firstName + '\'' +
+        ", lastName='" + lastName + '\'' +
+        ", count=" + count +
+        '}';
+  }
 }

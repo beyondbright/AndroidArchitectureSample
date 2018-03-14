@@ -9,7 +9,7 @@ import android.arch.persistence.room.*
  */
 
 @Dao
-public interface UserDao {
+interface UserDao {
   @Query("SELECT * FROM user limit 1")
   fun get(): User
 
@@ -19,9 +19,11 @@ public interface UserDao {
   @Query("SELECT * FROM user WHERE id IN (:userIds)")
   fun loadAllByIds(userIds: IntArray): List<User>
 
-  @Query("SELECT * FROM user WHERE first_name LIKE :first AND "
-      + "last_name LIKE :last LIMIT 1")
+  @Query("SELECT * FROM user WHERE first_name LIKE :first AND last_name LIKE :last LIMIT 1")
   fun findByName(first: String, last: String): User
+
+  @Query("SELECT * FROM user WHERE :where LIMIT 1")
+  fun testFindByName(where: String): User
 
   @Insert
   fun insertAll(users: Array<User>)
